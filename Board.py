@@ -4,8 +4,12 @@ from Cube import Cube
 class Board:
     _board_size = 5
     def __init__(self):
-        # self.grid = [[,,,,],[,,,,],[,,,,],[,,,,],[,,,,]]
-        self.grid = [[]]
+        self.grid = []
+        for i in range(self._board_size):
+            inner_list=[]
+            for j in range(self._board_size):
+                inner_list.append("X")
+            self.grid.append(inner_list)
 
     # get random coor for new cube
     def random_coor_generator(self, direction):
@@ -31,9 +35,7 @@ class Board:
     # create a new cube and assign coor value
     def create_cube(self, direction):
         cube = Cube(self.random_coor_generator(direction))
-        print(cube.coor)
-        print(cube.value)
-        print(cube._all)
+        self.grid[cube.coor[0]][cube.coor[1]] = cube
 
     # How to manipulate the cubes when Board gets user input?
     # Is Board meant to handle cube moves?
@@ -48,16 +50,22 @@ class Board:
     # cube judging the value change
     # and its own presence(or coor modifying)... or you can make
     # the cube to let Board know that it should delete the coor of that cube
-    def move_cube(self, direction):
-        if direction == 'down':
-            for i in range(self._board_size):
-                for j+1 in range(self._board_size):
-                    if self.grid[i,j] == X:
-                        # move the cube (change the coor, change the value on the grid)
-                        # 잠시만요, 리스트 안에 인스턴스를 넣는게 가능합니까?
-                        # 해본적이 없어서 모르겠네요.. 집에 가면 할 수 있을까요? 
-                        # 일단 지금 너무 배고파요
+
+    # def move_cube(self, direction):
+    #     if direction == 'down':
+    #         for i in range(self._board_size):
+    #             for j+1 in range(self._board_size):
+    #                 if self.grid[i,j] == X:
+    #                     # move the cube (change the coor, change the value on the grid)
+    #                     # 잠시만요, 리스트 안에 인스턴스를 넣는게 가능합니까?
+    #                     # 해본적이 없어서 모르겠네요.. 집에 가면 할 수 있을까요?
+    #                     # 일단 지금 너무 배고파요
 
 board = Board()
-
 board.create_cube(input())
+
+def printing(grid):
+    for i in range(len(grid)):
+        print(grid[i])
+
+printing(board.grid)
