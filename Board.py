@@ -73,32 +73,9 @@ class Board:
                                 # move the cube, change the coor and change the value of that cube
                                 self.grid[j][i].change_value()
                                 if self.grid[j][i].tells_winning_or_not():
+                                    print("Why don't you work??")
                                     return 1
                                 self.grid[j-1][i] = self.grid[j][i]
                                 self.grid[j][i] = False
-
-def printing(grid): # This is for playing in the terminal but you might need
-                    # The logic here when playing on GUI
-    print_grid = []
-    for i in range(len(grid)):
-        row_list = []
-        for j in range(len(grid)):
-            if grid[i][j]:
-                copy_value = grid[i][j].value # Let's see if I can make this as one line
-                row_list.append(copy_value)
-            else: row_list.append(0)
-        print_grid.append(row_list)
-    for i in range(len(grid)):
-        print(print_grid[i])
-
-def main(grid):
-    won = False # or flag
-    while won == False:
-        direction = input()
-        if board.move_cube(direction) == 1: # You should do something here.....
-            won = True
-        board.create_cube(direction)
-        printing(grid)
-
-board = Board()
-main(board.grid)
+        elif direction == 'd':
+            pass
