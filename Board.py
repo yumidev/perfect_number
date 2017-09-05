@@ -61,37 +61,33 @@ class Board:
         if direction == 'up':
             for i in range(self._board_size):
                 for j in range(1, self._board_size):
-                    current_block = self.grid[j][i]
-                    block_ahead = self.grid[j-1][i]
-                    print("Count: {}".format(current_block))
-                    if current_block:
-                        if not block_ahead:
+                    print("Count: {}".format(self.grid[j][i]))
+                    if self.grid[j][i]:
+                        if not self.grid[j-1][i]:
                             # move the cube and change the coor and empty the current coor
-                            print(current_block)
-                            current_block.coor = [j-1,i] # Do I really need this?
-                            block_ahead = current_block
-                            current_block = False
+                            print(self.grid[j][i])
+                            self.grid[j][i].coor = [j-1,i] # Do I really need this?
+                            self.grid[j-1][i] = self.grid[j][i]
+                            self.grid[j][i] = False
                         else:
-                            if block_ahead.value == current_block: # when the values are the same
+                            if self.grid[j-1][i].value == self.grid[j][i].value: # when the values are the same
                                 # move the cube, change the coor and change the value of that cube
-                                current_block.change_value
-                                block_ahead = current_block
-# This printing function needs to be fixed not to change the real grid
-def printing(grid):
-    print_grid = grid
-    for i in range(len(print_grid)):
-        for j in range(len(print_grid)):
-            if print_grid[i][j]:
-                print_grid[i][j] = print_grid[i][j].value
-    for i in range(len(print_grid)):
-        print(print_grid[i])
+                                print("들어는 가십니까?")
+                                self.grid[j][i].change_value
+                                self.grid[j][i].tells_winning_or_not
+                                self.grid[j-1][i] = self.grid[j][i]
 
+# 그러게 어쩌면 큐브 인스턴스 때문인지도 모르겠네... 그건 카피가 안되나?? 그럼 그걸 카피해줘야하나??
+def printing(grid):
+    for i in range(len(grid)):
+        print(grid[i])
 
 def main(grid):
     while True:
         direction = input()
         board.move_cube(direction)
         board.create_cube(direction)
+        printing(grid)
 
 board = Board()
 main(board.grid)
