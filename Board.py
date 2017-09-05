@@ -13,19 +13,20 @@ class Board:
 
     # get random coor for new cube
     def random_coor_generator(self, direction):
+        end_index = self._board_size-1
         try:
             if direction == 'up':
                 coor = [
-                    self._board_size-1, random.randint(0, self._board_size-1)]
+                    end_index, random.randint(0, end_index)]
             elif direction == 'down':
                 coor = [
-                    0, random.randint(0, self._board_size-1), ]
+                    0, random.randint(0, end_index), ]
             elif direction == 'left':
                 coor = [
-                    random.randint(0, self._board_size-1), self._board_size-1]
+                    random.randint(0, end_index), end_index]
             elif direction == 'right':
                 coor = [
-                    random.randint(0, self._board_size-1), 0]
+                    random.randint(0, end_index), 0]
         except ValueError:
             return random_coor_generator(input())
         return coor
