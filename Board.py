@@ -30,10 +30,16 @@ class Board:
             return random_coor_generator(input())
         return coor
 
-    # create a new cube and assign coor value
+    # create a new cube and assign coor value to the cube's value
     def create_cube(self, direction):
-        cube = Cube(self.random_coor_generator(direction))
-        self.grid[cube.coor[0]][cube.coor[1]] = cube
+        # Make sure the space is empty
+        coor = None # You may want to change the name of this variable
+        while True :
+            coor = self.random_coor_generator(direction)
+            if not self.grid[coor[0]][coor[1]]:
+                break
+
+        self.grid[coor[0]][coor[1]] = Cube(coor)
 
     # How to manipulate the cubes when Board gets user input?
     # Is Board meant to handle cube moves?
