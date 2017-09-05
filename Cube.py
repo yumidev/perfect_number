@@ -7,5 +7,5 @@ class Cube:
         self.value = random.choice([2,4])
         self.__class__._all.add(self)
 
-    # edge matters!! because this judging process only occurs on the edge
-    # judging process : if the value of two cubes are the same, then
+    # edge matters!! because this judging process only occurs when the cube reaches the wall
+    # judging process : if the value of two cubes are the same

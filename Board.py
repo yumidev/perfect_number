@@ -48,8 +48,15 @@ class Board:
     # cube judging the value change
     # and its own presence(or coor modifying)... or you can make
     # the cube to let Board know that it should delete the coor of that cube
-    def move_cube(self, )
-
+    def move_cube(self, direction):
+        if direction == 'down':
+            for i in range(self._board_size):
+                for j+1 in range(self._board_size):
+                    if self.grid[i,j] == X:
+                        # move the cube (change the coor, change the value on the grid)
+                        # 잠시만요, 리스트 안에 인스턴스를 넣는게 가능합니까?
+                        # 해본적이 없어서 모르겠네요.. 집에 가면 할 수 있을까요? 
+                        # 일단 지금 너무 배고파요
 
 board = Board()
 
