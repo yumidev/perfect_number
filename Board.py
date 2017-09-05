@@ -39,7 +39,6 @@ class Board:
             coor = self.random_coor_generator(direction)
             if not self.grid[coor[0]][coor[1]]:
                 break
-
         self.grid[coor[0]][coor[1]] = Cube(coor)
 
     # How to manipulate the cubes when Board gets user input?
@@ -73,18 +72,31 @@ class Board:
                             if self.grid[j-1][i].value == self.grid[j][i].value: # when the values are the same
                                 # move the cube, change the coor and change the value of that cube
                                 self.grid[j][i].change_value()
-                                self.grid[j][i].tells_winning_or_not()
+                                if self.grid[j][i].tells_winning_or_not():
+                                    return 1
                                 self.grid[j-1][i] = self.grid[j][i]
+                                self.grid[j][i] = False
 
-# 그러게 어쩌면 큐브 인스턴스 때문인지도 모르겠네... 그건 카피가 안되나?? 그럼 그걸 카피해줘야하나??
-def printing(grid):
+def printing(grid): # This is for playing in the terminal but you might need
+                    # The logic here when playing on GUI
+    print_grid = []
     for i in range(len(grid)):
-        print(grid[i])
+        row_list = []
+        for j in range(len(grid)):
+            if grid[i][j]:
+                copy_value = grid[i][j].value # Let's see if I can make this as one line
+                row_list.append(copy_value)
+            else: row_list.append(0)
+        print_grid.append(row_list)
+    for i in range(len(grid)):
+        print(print_grid[i])
 
 def main(grid):
-    while True:
+    won = False # or flag
+    while won == False:
         direction = input()
-        board.move_cube(direction)
+        if board.move_cube(direction) == 1: # You should do something here.....
+            won = True
         board.create_cube(direction)
         printing(grid)
 
