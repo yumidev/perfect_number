@@ -72,9 +72,8 @@ class Board:
                         else:
                             if self.grid[j-1][i].value == self.grid[j][i].value: # when the values are the same
                                 # move the cube, change the coor and change the value of that cube
-                                print("들어는 가십니까?")
-                                self.grid[j][i].change_value
-                                self.grid[j][i].tells_winning_or_not
+                                self.grid[j][i].change_value()
+                                self.grid[j][i].tells_winning_or_not()
                                 self.grid[j-1][i] = self.grid[j][i]
 
 # 그러게 어쩌면 큐브 인스턴스 때문인지도 모르겠네... 그건 카피가 안되나?? 그럼 그걸 카피해줘야하나??
