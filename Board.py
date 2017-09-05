@@ -6,10 +6,10 @@ class Board:
     def __init__(self):
         self.grid = []
         for i in range(self._board_size):
-            inner_list=[]
+            row_list=[]
             for j in range(self._board_size):
-                inner_list.append(False) # Which is better, False or None?
-            self.grid.append(inner_list)
+                row_list.append(False) # Which is better, False or None?
+            self.grid.append(row_list)
 
     # get random coor for new cube
     def random_coor_generator(self, direction):
