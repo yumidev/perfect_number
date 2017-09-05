@@ -8,12 +8,11 @@ class Board:
         for i in range(self._board_size):
             inner_list=[]
             for j in range(self._board_size):
-                inner_list.append("X")
+                inner_list.append(False) # Which is better, False or None?
             self.grid.append(inner_list)
 
     # get random coor for new cube
     def random_coor_generator(self, direction):
-        coor = None # You may want to change the name of this variable
         try:
             if direction == 'up':
                 coor = [
