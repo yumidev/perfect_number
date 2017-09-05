@@ -35,6 +35,21 @@ class Board:
         print(cube.value)
         print(cube._all)
 
+    # How to manipulate the cubes when Board gets user input?
+    # Is Board meant to handle cube moves?
+    # Board handling changing coor of a cube
+    # it should decide whether to move the cube or not
+    # first condition: does it have enough space to move?
+    #   if the coor is on the edge, don't move the cube
+    # second condition: the coor where the cube is moving, is it empty or occupied?
+    #   if it's occupied, the cube should start judging
+
+
+    # cube judging the value change
+    # and its own presence(or coor modifying)... or you can make
+    # the cube to let Board know that it should delete the coor of that cube
+    def move_cube(self, )
+
 
 board = Board()
 
