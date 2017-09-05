@@ -7,5 +7,7 @@ class Cube:
         self.value = random.choice([2,4])
         self.__class__._all.add(self)
 
+    def change_value(self):
+        self.value *= 2
     # edge matters!! because this judging process only occurs when the cube reaches the wall
     # judging process : if the value of two cubes are the same
