@@ -54,27 +54,81 @@ class Board:
     # the cube to let Board know that it should delete the coor of that cube
 
 
-
     def move_cube(self, direction):
-        if direction == 'up':
+        if direction == 'u':
             for i in range(self._board_size):
                 for j in range(1, self._board_size):
-                    print("Count: {}".format(self.grid[j][i]))
                     if self.grid[j][i]:
                         if not self.grid[j-1][i]:
-                            # move the cube and change the coor and empty the current coor
-                            print(self.grid[j][i])
                             self.grid[j][i].coor = [j-1,i] # Do I really need this?
+                            # below 2 lines actually moving the cube
                             self.grid[j-1][i] = self.grid[j][i]
                             self.grid[j][i] = False
                         else:
                             if self.grid[j-1][i].value == self.grid[j][i].value: # when the values are the same
                                 # move the cube, change the coor and change the value of that cube
                                 self.grid[j][i].change_value()
-                                if self.grid[j][i].tells_winning_or_not():
-                                    print("Why don't you work??")
-                                    return 1
+                                self.grid[j][i].coor = [j-1,i] # Do I really need this?
+                                # below 2 lines actually moving the cube
                                 self.grid[j-1][i] = self.grid[j][i]
                                 self.grid[j][i] = False
+                                if self.grid[j-1][i].tells_winning_or_not():
+                                    return 1
+
         elif direction == 'd':
-            pass
+            for i in range(self._board_size):
+                for j in range(self._board_size-2, -1, -1):
+                    if self.grid[j][i]:
+                        if not self.grid[j+1][i]:
+                            self.grid[j][i].coor = [j+1,i] # Do I really need this?
+                            # below 2 lines actually moving the cube
+                            self.grid[j+1][i] = self.grid[j][i]
+                            self.grid[j][i] = False
+                        else:
+                            if self.grid[j+1][i].value == self.grid[j][i].value: # when the values are the same
+                                # move the cube, change the coor and change the value of that cube
+                                self.grid[j][i].change_value()
+                                self.grid[j][i].coor = [j+1,i] # Do I really need this?
+                                # below 2 lines actually moving the cube
+                                self.grid[j+1][i] = self.grid[j][i]
+                                self.grid[j][i] = False
+                                if self.grid[j+1][i].tells_winning_or_not():
+                                    return 1
+        elif direction == 'l':
+            for i in range(self._board_size):
+                for j in range(1, self._board_size):
+                    if self.grid[i][j]:
+                        if not self.grid[i][j-1]:
+                            self.grid[i][j].coor = [i, j-1] # Do I really need this?
+                            # below 2 lines actually moving the cube
+                            self.grid[i][j-1] = self.grid[i][j]
+                            self.grid[i][j] = False
+                        else:
+                            if self.grid[i][j-1].value == self.grid[i][j].value: # when the values are the same
+                                # move the cube, change the coor and change the value of that cube
+                                self.grid[i][j].change_value()
+                                self.grid[i][j].coor = [i, j-1] # Do I really need this?
+                                # below 2 lines actually moving the cube
+                                self.grid[i][j-1] = self.grid[i][j]
+                                self.grid[i][j] = False
+                                if self.grid[i][j-1].tells_winning_or_not():
+                                    return 1
+        elif direction == 'r':
+            for i in range(self._board_size):
+                for j in range(self._board_size-2, -1, -1):
+                    if self.grid[i][j]:
+                        if not self.grid[i][j+1]:
+                            self.grid[i][j].coor = [i, j+1] # Do I really need this?
+                            # below 2 lines actually moving the cube
+                            self.grid[i][j+1] = self.grid[i][j]
+                            self.grid[i][j] = False
+                        else:
+                            if self.grid[i][j+1].value == self.grid[i][j].value: # when the values are the same
+                                # move the cube, change the coor and change the value of that cube
+                                self.grid[i][j].change_value()
+                                self.grid[i][j].coor = [i, j+1] # Do I really need this?
+                                # below 2 lines actually moving the cube
+                                self.grid[i][j+1] = self.grid[i][j]
+                                self.grid[i][j] = False
+                                if self.grid[i][j+1].tells_winning_or_not():
+                                    return 1
