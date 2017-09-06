@@ -19,13 +19,9 @@ def main(grid):
     while won == False:
         direction = input()
         if board.move_cube(direction) == 1: # You should do something here.....
-            print("Did you get in?")
             won = True
         board.create_cube(direction)
-        print(won)
         printing(grid)
-    else:
-        pass
 
 board = Board()
 main(board.grid)
