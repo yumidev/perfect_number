@@ -1,7 +1,7 @@
 from Board import Board
 
 def printing(grid): # This is for playing in the terminal but you might need
-                    # The logic here when playing on GUI
+                    # the logic here when playing on GUI
     print_grid = []
     for i in range(len(grid)):
         row_list = []
@@ -14,10 +14,18 @@ def printing(grid): # This is for playing in the terminal but you might need
     for i in range(len(grid)):
         print(print_grid[i])
 
+def input_validation(user_input):
+    valid_inputs = ('u', 'd', 'l', 'r')
+    if user_input in valid_inputs:
+        return user_input
+    else:
+        print("Please enter a character in this list: {}".format("characters list"))
+        return input_validation(input())
+
 def main(grid):
     won = False # or flag
     while won == False:
-        direction = input()
+        direction = input_validation(input())
         if board.move_cube(direction) == 1: # You should do something here.....
             won = True
         board.create_cube(direction)
