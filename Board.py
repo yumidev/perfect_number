@@ -3,6 +3,7 @@ from Cube import Cube
 
 class Board:
     _board_size = 5
+    directions = {'up': 'u', 'down': 'd', 'left': 'l', 'right': 'r'}
     def __init__(self):
         self.grid = []
         for i in range(self._board_size):
@@ -14,20 +15,18 @@ class Board:
     # get random coor for new cube
     def random_coor_generator(self, direction): # TODO invalid key input error handling
         end_index = self._board_size-1
-        if direction == 'u':
+        if direction == self.directions['up']:
             coor = [
                 end_index, random.randint(0, end_index)]
-        elif direction == 'd':
+        elif direction == self.directions['down']:
             coor = [
                 0, random.randint(0, end_index)]
-        elif direction == 'l':
+        elif direction == self.directions['left']:
             coor = [
                 random.randint(0, end_index), end_index]
-        elif direction == 'r':
+        elif direction == self.directions['right']:
             coor = [
                 random.randint(0, end_index), 0]
-        else:
-            return self.random_coor_generator(input())
         return coor
 
     # create a new cube and assign coor value to the cube's value
@@ -40,22 +39,8 @@ class Board:
                 break
         self.grid[coor[0]][coor[1]] = Cube(coor)
 
-    # How to manipulate the cubes when Board gets user input?
-    # Is Board meant to handle cube moves?
-    # Board handling changing coor of a cube
-    # it should decide whether to move the cube or not
-    # first condition: does it have enough space to move?
-    #   if the coor is on the edge, don't move the cube
-    # second condition: the coor where the cube is moving, is it empty or occupied?
-    #   if it's occupied, the cube should start judging
-
-    # cube judging the value change
-    # and its own presence(or coor modifying)... or you can make
-    # the cube to let Board know that it should delete the coor of that cube
-
-
     def move_cube(self, direction):
-        if direction == 'u':
+        if direction == self.directions['up']:
             for i in range(self._board_size):
                 for j in range(1, self._board_size):
                     if self.grid[j][i]:
@@ -75,7 +60,7 @@ class Board:
                                 if self.grid[j-1][i].tells_winning_or_not():
                                     return 1
 
-        elif direction == 'd':
+        elif direction == self.directions['down']:
             for i in range(self._board_size):
                 for j in range(self._board_size-2, -1, -1):
                     if self.grid[j][i]:
@@ -94,7 +79,7 @@ class Board:
                                 self.grid[j][i] = False
                                 if self.grid[j+1][i].tells_winning_or_not():
                                     return 1
-        elif direction == 'l':
+        elif direction == self.directions['left']:
             for i in range(self._board_size):
                 for j in range(1, self._board_size):
                     if self.grid[i][j]:
@@ -113,7 +98,7 @@ class Board:
                                 self.grid[i][j] = False
                                 if self.grid[i][j-1].tells_winning_or_not():
                                     return 1
-        elif direction == 'r':
+        elif direction == self.directions['right']:
             for i in range(self._board_size):
                 for j in range(self._board_size-2, -1, -1):
                     if self.grid[i][j]:
