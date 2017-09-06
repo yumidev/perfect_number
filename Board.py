@@ -12,23 +12,22 @@ class Board:
             self.grid.append(row_list)
 
     # get random coor for new cube
-    def random_coor_generator(self, direction):
+    def random_coor_generator(self, direction): # TODO invalid key input error handling
         end_index = self._board_size-1
-        try:
-            if direction == 'up':
-                coor = [
-                    end_index, random.randint(0, end_index)]
-            elif direction == 'down':
-                coor = [
-                    0, random.randint(0, end_index), ]
-            elif direction == 'left':
-                coor = [
-                    random.randint(0, end_index), end_index]
-            elif direction == 'right':
-                coor = [
-                    random.randint(0, end_index), 0]
-        except ValueError:
-            return random_coor_generator(input())
+        if direction == 'u':
+            coor = [
+                end_index, random.randint(0, end_index)]
+        elif direction == 'd':
+            coor = [
+                0, random.randint(0, end_index)]
+        elif direction == 'l':
+            coor = [
+                random.randint(0, end_index), end_index]
+        elif direction == 'r':
+            coor = [
+                random.randint(0, end_index), 0]
+        else:
+            return self.random_coor_generator(input())
         return coor
 
     # create a new cube and assign coor value to the cube's value
