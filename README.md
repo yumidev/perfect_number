@@ -4,8 +4,21 @@
 
 ### How to play
 
+```
+$ py Main.py
+```
+Once you enter this command, you will type the goal of this game.
+
+```
+$ Enter your goal (goal should a prime number between 3 and 11)
+$ 5
+```
+If you type 5, your goal is to get number 32 which is 2 powered by 5.
+
+### Custom play
+
 어떻게 플레이 하냐구?
-일단은 목표치를 입력하고(목표치는... 3 ~ 11 까지의 정수로)
+일단은 목표치를 입력하고(목표치는... 3 ~ 11 까지의 정수로)(regex)
 
 (음... 보드를 설정하고 싶으면 어떤 키를 누르라고 해야겠지? 이건 옵션으로 하자고. 디폴트는 5로 합시다) <<<<
 
