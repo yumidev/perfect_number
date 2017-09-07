@@ -10,7 +10,7 @@ $ py Main.py
 Once you enter this command, you will type the goal of this game.
 
 ```
-$ Enter a character from this list - up: u, down: d, left: l, right: r
+$ Enter a character from this list - up: i, down: k, left: j, right: l
 ```
 
 ### Custom play

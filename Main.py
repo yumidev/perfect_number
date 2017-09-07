@@ -33,7 +33,7 @@ def input_validation(user_input, valid_inputs):
         return input_validation(input(), valid_inputs)
 
 def main(board):
-    directions = {'up': 'u', 'down': 'd', 'left': 'l', 'right': 'r'} # make only the main function control valid_inputs
+    directions = {'up': 'i', 'down': 'k', 'left': 'j', 'right': 'l'} # make only the main function control valid_inputs
     # for terminal game, you can make the value as set and make the board to use the values. You just need to change == to in.
     print("Enter a character from this list - up: u, down: d, left: l, right: r")
 
