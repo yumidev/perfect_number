@@ -10,8 +10,12 @@ $ py Main.py
 Once you enter this command, you will type the goal of this game.
 
 ```
-$ Enter your goal (goal should a prime number between 3 and 11)
+$ Enter your goal. (Goal should a prime number between 3 and 11)
 $ 5
+$ Now you have to get 32
+$ Game start
+$
+$ "Enter a character from this list - up: u, down: d, left: l, right: r"
 ```
 If you type 5, your goal is to get number 32 which is 2 powered by 5.
 
