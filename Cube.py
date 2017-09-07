@@ -11,8 +11,7 @@ class Cube:
 
     def tells_winning_or_not(self):
         if self.value == self._target_value:
-            print("$"*80)
+            print("*"*50)
             print("You got {}. Congratulations!!!".format(self._target_value))
+            print("*"*50)
             return True
-    # edge matters!! because this judging process only occurs when the cube reaches the wall
-    # judging process : if the value of two cubes are the same
