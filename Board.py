@@ -2,7 +2,7 @@ import random
 from Cube import Cube
 
 class Board:
-    _board_size = 5
+    _board_size = 3
     directions = {'up': 'u', 'down': 'd', 'left': 'l', 'right': 'r'}
     def __init__(self):
         self.grid = []
@@ -13,7 +13,7 @@ class Board:
             self.grid.append(row_list)
 
     # get random coor for new cube
-    def random_coor_generator(self, direction): # TODO invalid key input error handling
+    def random_coor_generator(self, direction):
         end_index = self._board_size-1
         if direction == self.directions['up']:
             coor = [
@@ -33,11 +33,14 @@ class Board:
     def create_cube(self, direction):
         # Make sure the space is empty
         coor = None # You may want to change the name of this variable
-        while True :
+        count = 0 # don't try to put a new cube if you can't find a space from one wall
+        while count < self._board_size:
             coor = self.random_coor_generator(direction)
+            count += 1
             if not self.grid[coor[0]][coor[1]]:
                 break
-        self.grid[coor[0]][coor[1]] = Cube(coor)
+        if count < self._board_size:
+            self.grid[coor[0]][coor[1]] = Cube(coor)
 
     def move_cube(self, direction):
         if direction == self.directions['up']:
@@ -59,7 +62,6 @@ class Board:
                                 self.grid[j][i] = False
                                 if self.grid[j-1][i].tells_winning_or_not():
                                     return 1
-
         elif direction == self.directions['down']:
             for i in range(self._board_size):
                 for j in range(self._board_size-2, -1, -1):
