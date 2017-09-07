@@ -25,15 +25,12 @@ def printing(grid):
         print("Game finished. You lose")
         return 1
 
-# 이제 알겠다... 한번 위로 올라갈 게 아무것도 없는 경우가 문제였구나!!! --> create_cube 에서 while
-# 루프를 제대로 처리하지 않은게 문제였음
-
 def input_validation(user_input, valid_inputs):
     if user_input in valid_inputs:
         return user_input
     else:
         print("Please enter a character in this list: {}".format("characters list"))
-        return input_validation(input())
+        return input_validation(input(), valid_inputs)
 
 def main(board):
     directions = {'up': 'u', 'down': 'd', 'left': 'l', 'right': 'r'} # make only the main function control valid_inputs

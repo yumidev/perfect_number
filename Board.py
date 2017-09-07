@@ -2,7 +2,7 @@ import random
 from Cube import Cube
 
 class Board:
-    _board_size = 3
+    _board_size = 5
     def __init__(self):
         self.grid = []
         for i in range(self._board_size):

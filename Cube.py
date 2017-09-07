@@ -1,7 +1,7 @@
 import random
 
 class Cube:
-    _target_value = 32
+    _target_value = 128
     def __init__(self, coor):
         self.coor = coor
         self.value = random.choice([2,4])
