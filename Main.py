@@ -9,8 +9,7 @@ def printing(grid):
         row_list = []
         for j in range(Board._board_size):
             if grid[i][j]:
-                copy_value = grid[i][j].value # Let's see if I can make this as one line
-                row_list.append(copy_value)
+                row_list.append(grid[i][j].value)
             else:
                 row_list.append(0)
                 count_empty_block += 1
