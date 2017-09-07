@@ -1,35 +1,51 @@
 from Board import Board
 
-def printing(grid): # This is for playing in the terminal but you might need
-                    # the logic here when playing on GUI
+# This is for playing in the terminal but you might need the logic here when playing on GUI
+def printing(grid):
     print_grid = []
-    for i in range(len(grid)):
+    count_empty_block = 0
+
+    for i in range(Board._board_size):
         row_list = []
-        for j in range(len(grid)):
+        for j in range(Board._board_size):
             if grid[i][j]:
                 copy_value = grid[i][j].value # Let's see if I can make this as one line
                 row_list.append(copy_value)
-            else: row_list.append(0)
+            else:
+                row_list.append(0)
+                count_empty_block += 1
         print_grid.append(row_list)
-    for i in range(len(grid)):
+
+    for i in range(Board._board_size): # only this part is doing actual printing. Others should be separated.
         print(print_grid[i])
 
-def input_validation(user_input):
-    valid_inputs = ('u', 'd', 'l', 'r')
+    if not count_empty_block: # see if you can separate this block of code
+        for i, j in ((i,j) for i in range(Board._board_size) for j in range(Board._board_size-1)):
+            if print_grid[i][j] == print_grid[i][j+1] or print_grid[j][i] == print_grid[j+1][i]:
+                return
+        print("Game finished. You lose")
+        return 1
+
+# 이제 알겠다... 한번 위로 올라갈 게 아무것도 없는 경우가 문제였구나!!! --> create_cube 에서 while
+# 루프를 제대로 처리하지 않은게 문제였음
+
+def input_validation(user_input, valid_inputs):
     if user_input in valid_inputs:
         return user_input
     else:
         print("Please enter a character in this list: {}".format("characters list"))
         return input_validation(input())
 
-def main(grid):
-    won = False # or flag
-    while won == False:
-        direction = input_validation(input())
-        if board.move_cube(direction) == 1: # You should do something here.....
-            won = True
-        board.create_cube(direction)
-        printing(grid)
+def main(board):
+    directions = {'up': 'u', 'down': 'd', 'left': 'l', 'right': 'r'} # make only the main function control valid_inputs
+    # for terminal game, you can make the value as set and make the board to use the values. You just need to change == to in.
+    flag = False # to tell the game is finished
+    while flag == False:
+        direction = input_validation(input(), directions.values())
+        if board.move_cube(direction, directions) == 1: # You should do something here.....
+            flag = True
+        board.create_cube(direction, directions)
+        if printing(board.grid) == 1:
+            flag = True
 
-board = Board()
-main(board.grid)
+main(Board())
