@@ -35,6 +35,7 @@ def input_validation(user_input, valid_inputs):
 def main(board):
     directions = {'up': 'i', 'down': 'k', 'left': 'j', 'right': 'l'} # make only the main function control valid_inputs
     # for terminal game, you can make the value as set and make the board to use the values. You just need to change == to in.
+    print("Your goal is to get number 128")
     print("Enter a character from this list - up: i, down: k, left: j, right: l")
 
     flag = False # to tell the game is finished
